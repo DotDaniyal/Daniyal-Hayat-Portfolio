@@ -17,11 +17,13 @@ import {
   CornerDownLeft, 
   X, 
   Clock, 
-  ExternalLink 
+  ExternalLink,
+  Layers,
+  Sparkles,
+  Download
 } from 'lucide-react';
 import { GITHUB_PROFILE_URL, GITHUB_USERNAME, DEVELOPER_EMAIL, RESUME_PDF_PATH, RESUME_FILENAME } from '../data/portfolioData';
 import { soundManager } from '../utils/sound';
-import { Download } from 'lucide-react';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -84,14 +86,6 @@ export function CommandPalette({
       action: () => scrollToSection('home'),
     },
     {
-      id: 'projects',
-      title: 'Navigate: Projects & Case Studies',
-      category: 'Navigation',
-      shortcut: 'P',
-      icon: <Folder className="w-4 h-4 text-violet-400" />,
-      action: () => scrollToSection('projects'),
-    },
-    {
       id: 'about',
       title: 'Navigate: About & Philosophy',
       category: 'Navigation',
@@ -106,6 +100,36 @@ export function CommandPalette({
       shortcut: 'S',
       icon: <Cpu className="w-4 h-4 text-emerald-400" />,
       action: () => scrollToSection('skills'),
+    },
+    {
+      id: 'services',
+      title: 'Navigate: Services & Capabilities',
+      category: 'Navigation',
+      icon: <Layers className="w-4 h-4 text-cyan-400" />,
+      action: () => scrollToSection('services'),
+    },
+    {
+      id: 'projects',
+      title: 'Navigate: Projects & Case Studies',
+      category: 'Navigation',
+      shortcut: 'P',
+      icon: <Folder className="w-4 h-4 text-violet-400" />,
+      action: () => scrollToSection('projects'),
+    },
+    {
+      id: 'journey',
+      title: 'Navigate: Engineering Journey & Milestones',
+      category: 'Navigation',
+      shortcut: 'J',
+      icon: <Clock className="w-4 h-4 text-amber-400" />,
+      action: () => scrollToSection('journey'),
+    },
+    {
+      id: 'creative-lab',
+      title: 'Navigate: Creative Lab & Design Showcase',
+      category: 'Navigation',
+      icon: <Sparkles className="w-4 h-4 text-pink-400" />,
+      action: () => scrollToSection('creative-lab'),
     },
     {
       id: 'contact',

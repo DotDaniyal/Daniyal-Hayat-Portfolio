@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { SKILL_GROUPS } from '../data/portfolioData';
 import { soundManager } from '../utils/sound';
+import { useLanguage } from '../context/LanguageContext';
 
 interface SkillNode {
   id: string;
@@ -143,6 +144,7 @@ function OrbitVisualizer({
 }
 
 export function Skills() {
+  const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<'ecosystem' | 'grid'>('ecosystem');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -220,13 +222,13 @@ export function Skills() {
           <div className="space-y-3 sm:space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
               <Cpu className="w-3.5 h-3.5" />
-              <span>Interactive Ecosystem</span>
+              <span>{t.skills.badge}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Skills & Technology Matrix
+              {t.skills.title}
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Explore my technical architecture as an interconnected ecosystem. Hover or tap any node to trace relationships and view implementation depth.
+              {t.skills.subtitle}
             </p>
           </div>
 

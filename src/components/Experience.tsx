@@ -1,23 +1,31 @@
 import { EXPERIENCE_TIMELINE } from '../data/portfolioData';
-import { Briefcase, Calendar, CheckCircle, Sparkles, Terminal, Code2 } from 'lucide-react';
+import { Briefcase, Calendar, CheckCircle, Sparkles, Terminal, Code2, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 
 export function Experience() {
+  const { t } = useLanguage();
   return (
-    <section id="experience" className="py-14 sm:py-20 md:py-24 relative bg-transparent dark:bg-slate-900/40 backdrop-blur-[2px]">
+    <section id="journey" className="py-14 sm:py-20 md:py-24 relative bg-transparent dark:bg-slate-900/40 backdrop-blur-[2px]">
+      <span id="experience" className="absolute -top-20 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="space-y-3 sm:space-y-4 max-w-3xl mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Development Timeline</span>
+            <span>{t.journey.badge}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Engineering Journey & Milestones
-          </h2>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 dark:text-amber-400 shadow-sm shrink-0">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.journey.title}
+            </h2>
+          </div>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            A chronological look at how I progressed from foundational web algorithms to architecting production web platforms, native Android mobile applications, and AI integrations.
+            {t.journey.subtitle}
           </p>
         </div>
 

@@ -15,8 +15,10 @@ import {
 } from 'lucide-react';
 import { CREATIVE_LAB_ITEMS, CreativeLabItem } from '../data/creativeLabData';
 import { soundManager } from '../utils/sound';
+import { useLanguage } from '../context/LanguageContext';
 
 export function CreativeLab() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedItem, setSelectedItem] = useState<CreativeLabItem | null>(null);
 
@@ -57,13 +59,18 @@ export function CreativeLab() {
           <div className="space-y-3 sm:space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
               <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
-              <span>Experimental Playground</span>
+              <span>{t.creativeLab.badge}</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Creative Lab
-            </h2>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-purple-500/15 via-pink-500/15 to-cyan-500/15 border border-purple-500/25 flex items-center justify-center text-purple-500 dark:text-purple-400 shadow-sm shrink-0">
+                <Palette className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                {t.creativeLab.title}
+              </h2>
+            </div>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-              Where technical architecture meets visual experimentation. A curated showcase of UI prototypes, Canva &amp; brand identities, kinetic motion physics, and canvas algorithms.
+              {t.creativeLab.subtitle}
             </p>
           </div>
 

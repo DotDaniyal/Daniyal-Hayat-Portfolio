@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { DEVELOPER_NAME, DEVELOPER_ROLE, DEVELOPER_EMAIL, GITHUB_PROFILE_URL, LIVE_DEPLOYMENTS, RESUME_PDF_PATH, RESUME_FILENAME } from '../data/portfolioData';
 import { Github, ExternalLink, ArrowUp, Clock, Globe, Mail, FileText, Download } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onOpenResume?: () => void;
 }
 
 export function Footer({ onOpenResume }: FooterProps) {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   const [timeString, setTimeString] = useState('');
 
@@ -112,7 +114,7 @@ export function Footer({ onOpenResume }: FooterProps) {
           <div>
             <span className="font-semibold text-slate-800 dark:text-slate-300">{DEVELOPER_NAME}</span> — <span className="text-slate-500 dark:text-slate-400">{DEVELOPER_ROLE}</span>
             <div className="text-slate-500 text-[10px] mt-0.5">
-              © {currentYear} {DEVELOPER_NAME}. All rights reserved.
+              © {currentYear} {DEVELOPER_NAME}. {t.footer.rights}
             </div>
           </div>
 

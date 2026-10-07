@@ -1,8 +1,10 @@
 import { EDUCATION_DATA, AI_CERTIFICATIONS_DATA } from '../data/portfolioData';
 import { GraduationCap, BookOpen, CheckCircle, Cpu, Layers, Award, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 
 export function Education() {
+  const { t } = useLanguage();
   const getIcon = (id: string) => {
     if (id === 'edu-3') return <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />;
     if (id === 'edu-2') return <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />;
@@ -17,13 +19,18 @@ export function Education() {
         <div className="space-y-3 sm:space-y-4 max-w-3xl mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
             <GraduationCap className="w-3.5 h-3.5" />
-            <span>Academic & Continuous Learning</span>
+            <span>{t.education.badge}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Education & Core Foundations
-          </h2>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-500 dark:text-cyan-400 shadow-sm shrink-0">
+              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.education.title}
+            </h2>
+          </div>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Rigorous foundations in computer science theory, algorithms, and practical software design combined with specialized masteries in full-stack web, mobile platforms, and AI engineering.
+            {t.education.subtitle}
           </p>
         </div>
 

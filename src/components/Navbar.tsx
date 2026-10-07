@@ -11,10 +11,12 @@ import {
   Volume2, 
   VolumeX, 
   Search,
-  Github
+  Github,
+  Globe
 } from 'lucide-react';
 import { GITHUB_PROFILE_URL, GITHUB_USERNAME } from '../data/portfolioData';
 import { soundManager } from '../utils/sound';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   activeSection: string;
@@ -33,6 +35,7 @@ export function Navbar({
   onOpenEasterEgg,
   onOpenCommandPalette,
 }: NavbarProps) {
+  const { language, setLanguage, toggleLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logoClicks, setLogoClicks] = useState(0);
@@ -82,6 +85,11 @@ export function Navbar({
     setSoundEnabled(next);
   };
 
+  const handleToggleLanguage = () => {
+    soundManager.playClick();
+    toggleLanguage();
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     soundManager.playClick();
     if (href.startsWith('#')) {
@@ -107,12 +115,14 @@ export function Navbar({
   };
 
   const navItems = [
-    { name: 'Home', href: '#home', id: 'home' },
-    { name: 'About', href: '#about', id: 'about' },
-    { name: 'Skills', href: '#skills', id: 'skills' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
-    { name: 'Creative Lab', href: '#creative-lab', id: 'creative-lab' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: t.nav.home, href: '#home', id: 'home' },
+    { name: t.nav.about, href: '#about', id: 'about' },
+    { name: t.nav.skills, href: '#skills', id: 'skills' },
+    { name: t.nav.services, href: '#services', id: 'services' },
+    { name: t.nav.projects, href: '#projects', id: 'projects' },
+    { name: t.nav.journey, href: '#journey', id: 'journey' },
+    { name: t.nav.creativeLab, href: '#creative-lab', id: 'creative-lab' },
+    { name: t.nav.contact, href: '#contact', id: 'contact' },
   ];
 
   return (
@@ -180,6 +190,48 @@ export function Navbar({
         {/* Right Actions */}
         <div className="hidden sm:flex items-center gap-2">
           
+          {/* Language Switcher Pill */}
+          <div className="flex items-center p-0.5 rounded-xl dark:bg-slate-900/90 bg-slate-100 border dark:border-slate-800 border-slate-200 shadow-xs">
+            <button
+              type="button"
+              onClick={() => {
+                if (language !== 'en') {
+                  soundManager.playClick();
+                  setLanguage('en');
+                }
+              }}
+              data-cursor="pointer"
+              className={`px-2 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                language === 'en'
+                  ? 'bg-cyan-500 text-slate-950 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+              title="Switch to English"
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (language !== 'ur') {
+                  soundManager.playClick();
+                  setLanguage('ur');
+                }
+              }}
+              data-cursor="pointer"
+              className={`px-2 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                language === 'ur'
+                  ? 'bg-cyan-500 text-slate-950 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+              title="اردو زبان منتخب کریں"
+              aria-label="Switch to Urdu"
+            >
+              اردو
+            </button>
+          </div>
+
           {/* Command Palette Trigger (Cmd+K) */}
           <button
             onClick={() => {
@@ -275,6 +327,15 @@ export function Navbar({
         {/* Mobile Actions & Hamburger (Compact: logo left, 44x44px icons right) */}
         <div className="flex items-center gap-1.5 sm:hidden">
           <button
+            onClick={handleToggleLanguage}
+            className="w-11 h-11 flex items-center justify-center rounded-xl dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-200 text-slate-700 dark:text-slate-200 hover:text-cyan-500 cursor-pointer transition-colors active:scale-95 font-mono text-xs font-bold"
+            aria-label="Toggle language"
+            title="Switch Language"
+          >
+            <span className="text-[11px] text-cyan-600 dark:text-cyan-400">{language === 'en' ? 'UR' : 'EN'}</span>
+          </button>
+
+          <button
             onClick={onOpenCommandPalette}
             className="w-11 h-11 flex items-center justify-center rounded-xl dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-200 text-slate-600 dark:text-slate-300 hover:text-cyan-500 cursor-pointer transition-colors active:scale-95"
             aria-label="Search and command palette"
@@ -327,13 +388,28 @@ export function Navbar({
             <div className="pt-3 mt-2 border-t dark:border-slate-800 border-slate-200 flex flex-col gap-2">
               <button
                 onClick={() => {
+                  handleToggleLanguage();
+                }}
+                className="flex items-center justify-between min-h-[44px] px-4 py-3 rounded-xl dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-200 text-xs font-mono dark:text-slate-300 text-slate-700 active:scale-[0.98] transition-transform cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-cyan-400" />
+                  <span>{t.nav.langToggle}</span>
+                </div>
+                <span className="px-2 py-0.5 rounded bg-cyan-500 text-slate-950 font-bold uppercase text-[10px]">
+                  {language === 'en' ? 'اردو (Urdu)' : 'English'}
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenResume();
                 }}
                 className="flex items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
               >
                 <FileText className="w-4 h-4" />
-                <span>View Resume / CV</span>
+                <span>{t.nav.viewResume}</span>
               </button>
 
               <button
@@ -344,7 +420,7 @@ export function Navbar({
                 className="flex items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-200 text-xs font-mono dark:text-slate-300 text-slate-700 active:scale-[0.98] transition-transform cursor-pointer"
               >
                 <Terminal className="w-4 h-4 text-cyan-400" />
-                <span>Open Developer Terminal</span>
+                <span>{t.nav.openTerminal}</span>
               </button>
 
               <a
@@ -354,7 +430,7 @@ export function Navbar({
                 className="flex items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-200 text-xs font-mono dark:text-slate-300 text-slate-700 active:scale-[0.98] transition-transform"
               >
                 <Github className="w-4 h-4 text-cyan-400" />
-                <span>GitHub Profile (@{GITHUB_USERNAME})</span>
+                <span>GitHub (@{GITHUB_USERNAME})</span>
               </a>
             </div>
           </motion.div>

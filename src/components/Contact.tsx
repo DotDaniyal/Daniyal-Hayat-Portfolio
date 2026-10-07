@@ -19,6 +19,7 @@ import {
 import { DEVELOPER_EMAIL, GITHUB_PROFILE_URL, GITHUB_USERNAME } from '../data/portfolioData';
 import { ContactFormState } from '../types';
 import { soundManager } from '../utils/sound';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FormErrors {
   name?: string;
@@ -28,6 +29,7 @@ interface FormErrors {
 }
 
 export function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<ContactFormState>({
     name: '',
     email: '',
@@ -209,17 +211,17 @@ export function Contact() {
         <div className="space-y-3 sm:space-y-4 max-w-3xl mb-10 sm:mb-14">
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold uppercase tracking-widest">
-              CONTACT // 04
+              {t.contact.badge}
             </span>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest">
               Initiate Transmission
             </span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
-            LET'S BUILD SOMETHING.
+            {t.contact.title}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            Have a web platform, native Android mobile app, or AI integration in mind? Send a direct transmission and let's turn ideas into reality.
+            {t.contact.subtitle}
           </p>
         </div>
 

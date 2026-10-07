@@ -27,6 +27,7 @@ import { ProjectModal } from './components/ProjectModal';
 import { ResumeModal } from './components/ResumeModal';
 import { EasterEggModal } from './components/EasterEggModal';
 import { Project } from './types';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Lazy load the PortfolioChatbot component to prevent slowing down initial page loads
 const PortfolioChatbot = React.lazy(() => import('./components/PortfolioChatbot').then(module => ({ default: module.PortfolioChatbot })));
@@ -92,13 +93,13 @@ export default function App() {
         return;
       }
 
-      const sections = ['contact', 'github', 'services', 'education', 'experience', 'creative-lab', 'projects', 'skills', 'about', 'home'];
+      const sections = ['contact', 'github', 'education', 'creative-lab', 'journey', 'experience', 'projects', 'services', 'skills', 'about', 'home'];
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 280 && rect.bottom >= 120) {
-            setActiveSection(sectionId);
+            setActiveSection(sectionId === 'experience' ? 'journey' : sectionId);
             break;
           }
         }
@@ -111,11 +112,12 @@ export default function App() {
   }, []);
 
   return (
-    <MotionConfig reducedMotion="user">
-      <SmoothScroll>
-      <div className={`min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-800 dark:selection:text-cyan-200 transition-colors duration-300 ${
-        isDarkMode ? 'bg-[#090a0f] text-slate-100' : 'bg-[#f4f5f8] text-slate-800'
-      }`}>
+    <LanguageProvider>
+      <MotionConfig reducedMotion="user">
+        <SmoothScroll>
+        <div className={`min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-800 dark:selection:text-cyan-200 transition-colors duration-300 ${
+          isDarkMode ? 'bg-[#090a0f] text-slate-100' : 'bg-[#f4f5f8] text-slate-800'
+        }`}>
         
         {/* Fast (<750ms) cinematic preloader */}
         {!loadingComplete && (
@@ -163,6 +165,11 @@ export default function App() {
             <Skills />
           </RevealOnScroll>
 
+          {/* Services & Technical Capabilities */}
+          <RevealOnScroll direction="up" distance={30} duration={600}>
+            <Services />
+          </RevealOnScroll>
+
           {/* Featured Flagship Project */}
           <RevealOnScroll direction="up" distance={30} duration={600}>
             <FeaturedProject onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)} />
@@ -173,19 +180,14 @@ export default function App() {
             <Projects onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)} />
           </RevealOnScroll>
 
-          {/* Creative Lab (Visual concepts, UI experiments, Canva graphics) */}
-          <RevealOnScroll direction="up" distance={30} duration={600}>
-            <CreativeLab />
-          </RevealOnScroll>
-
-          {/* Experience Timeline */}
+          {/* Engineering Journey & Milestones */}
           <RevealOnScroll direction="up" distance={30} duration={600}>
             <Experience />
           </RevealOnScroll>
 
-          {/* Services & Technical Offerings */}
+          {/* Creative Lab (Visual concepts, UI experiments, Canva graphics) */}
           <RevealOnScroll direction="up" distance={30} duration={600}>
-            <Services />
+            <CreativeLab />
           </RevealOnScroll>
 
           {/* Education & Foundations */}
@@ -246,5 +248,6 @@ export default function App() {
       </div>
     </SmoothScroll>
   </MotionConfig>
+  </LanguageProvider>
   );
 }

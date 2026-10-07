@@ -18,6 +18,7 @@ import { useGitHubActivity } from '../hooks/useGitHubActivity';
 import { useGitHubRepos } from '../hooks/useGitHubRepos';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { MagneticButton } from './MagneticButton';
+import { useLanguage } from '../context/LanguageContext';
 
 const TYPEWRITER_WORDS = [
   "Full-Stack Web Developer",
@@ -83,6 +84,7 @@ function ProfilePhotoCard({ className = "" }: { className?: string }) {
 }
 
 export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
+  const { t } = useLanguage();
   const { activity } = useGitHubActivity();
   const { projects } = useGitHubRepos();
 
@@ -177,9 +179,9 @@ export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
                 variants={itemVariants}
                 className="text-sm sm:text-base md:text-lg font-mono text-cyan-700 dark:text-cyan-400 font-semibold flex flex-wrap items-center gap-2 pt-1"
               >
-                <span>Full-Stack Developer &amp; Creative Builder</span>
+                <span>{t.hero.role}</span>
                 <span>•</span>
-                <span>Available for Projects &amp; Remote Roles</span>
+                <span>{t.hero.badge}</span>
               </motion.div>
             </div>
 
@@ -188,7 +190,7 @@ export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
               variants={itemVariants}
               className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed"
             >
-              I build modern web experiences, interactive applications, AI-powered products, and creative digital experiences.
+              {t.hero.tagline}
             </motion.p>
 
             {/* 7. Primary Action CTAs */}
@@ -201,7 +203,7 @@ export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
                 dataCursor="view"
                 className="min-h-[44px] px-7 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm shadow-md shadow-cyan-500/20 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 active:scale-[0.98] hover:shadow-cyan-500/35"
               >
-                <span>View My Work</span>
+                <span>{t.hero.viewProjects}</span>
                 <ArrowRight className="w-4 h-4" />
               </MagneticButton>
 
@@ -211,7 +213,7 @@ export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
                 className="min-h-[44px] px-6 py-3.5 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300/90 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-xs active:scale-[0.98] hover:border-cyan-500/40"
               >
                 <Mail className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                <span>Contact Me</span>
+                <span>{t.nav.contact}</span>
               </MagneticButton>
 
               <div className="flex items-center gap-2">
@@ -224,7 +226,7 @@ export function Hero({ onOpenResume, isLoaded = true }: HeroProps) {
                     className="flex-1 sm:flex-none min-h-[44px] px-5 py-3.5 rounded-xl bg-white dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-sm font-mono transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 active:scale-[0.98] hover:border-cyan-500/40 shadow-xs"
                   >
                     <FileText className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                    <span>Download Resume</span>
+                    <span>{t.hero.downloadResume}</span>
                   </MagneticButton>
                 )}
 

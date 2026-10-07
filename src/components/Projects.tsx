@@ -26,6 +26,7 @@ import { useGitHubRepos } from '../hooks/useGitHubRepos';
 import { Project } from '../types';
 import { LIVE_DEPLOYMENTS, GITHUB_PROFILE_URL } from '../data/portfolioData';
 import { getEstimatedReadingTime } from '../utils/readingTime';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectsProps {
   onOpenCaseStudy: (project: Project) => void;
@@ -270,6 +271,7 @@ function ProjectShowcase({ project, index, onOpenCaseStudy }: { project: Project
 }
 
 export function Projects({ onOpenCaseStudy }: ProjectsProps) {
+  const { t } = useLanguage();
   const { projects, isSyncing, lastSynced, refreshRepos } = useGitHubRepos();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -331,7 +333,7 @@ export function Projects({ onOpenCaseStudy }: ProjectsProps) {
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
                 <Folder className="w-3.5 h-3.5" />
-                <span>Selected Portfolio Work</span>
+                <span>{t.projects.badge}</span>
               </span>
 
               <button
@@ -346,10 +348,10 @@ export function Projects({ onOpenCaseStudy }: ProjectsProps) {
             </div>
             
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Production Work & Case Studies
+              {t.projects.title}
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-              Each project is accompanied by architectural breakdowns, real GitHub source links, and live production endpoints.
+              {t.projects.subtitle}
             </p>
           </div>
 

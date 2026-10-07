@@ -13,8 +13,10 @@ import {
 import { GITHUB_PROFILE_URL, GITHUB_USERNAME } from '../data/portfolioData';
 import { useGitHubRepos } from '../hooks/useGitHubRepos';
 import { useGitHubActivity } from '../hooks/useGitHubActivity';
+import { useLanguage } from '../context/LanguageContext';
 
 export function GithubSection() {
+  const { t } = useLanguage();
   const { projects } = useGitHubRepos();
   const { activity } = useGitHubActivity();
   const repoCount = projects.length || 7;
@@ -30,13 +32,18 @@ export function GithubSection() {
         <div className="space-y-3 sm:space-y-4 max-w-3xl mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest">
             <Activity className="w-3.5 h-3.5" />
-            <span>Open Source & Version Control</span>
+            <span>{t.github.badge}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-            GitHub Activity & Repository Stream
-          </h2>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shadow-sm shrink-0">
+              <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {t.github.title}
+            </h2>
+          </div>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            All codebases, commits, and releases are maintained in public and accessible for inspection under @{GITHUB_USERNAME}.
+            {t.github.subtitle}
           </p>
         </div>
 

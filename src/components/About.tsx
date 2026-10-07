@@ -19,12 +19,14 @@ import {
 } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 import { soundManager } from '../utils/sound';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AboutProps {
   onOpenResume?: () => void;
 }
 
 export function About({ onOpenResume }: AboutProps) {
+  const { t } = useLanguage();
   const { projects } = useGitHubRepos();
   const repoCount = projects.length || 7;
 
@@ -60,14 +62,14 @@ export function About({ onOpenResume }: AboutProps) {
         <div className="space-y-4 max-w-3xl mb-10 sm:mb-16">
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold uppercase tracking-widest">
-              ABOUT // 01
+              {t.about.badge}
             </span>
             <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
               Who is Daniyal?
             </span>
           </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-            Driven by clean architecture, relentless performance, and editorial feel.
+            {t.about.title}
           </h2>
         </div>
 
