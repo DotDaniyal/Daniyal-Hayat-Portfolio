@@ -260,7 +260,7 @@ export const PROJECTS: Project[] = [
       screenshots: "Club landing page, roster matrix, fixture timeline, match recap overlay.",
       liveDemo: "https://daniyal-hayat-portfolio.vercel.app/",
       github: "https://github.com/DotDaniyal",
-      lessonsLearned: "Sports platforms require clear typographic hierarchy—fans look for kickoff times and scores in under 2 seconds.",
+      lessonsLearned: "Sports platforms require clear typographic hierarchy: fans look for kickoff times and scores in under 2 seconds.",
       result: "Delivered a high-energy, production-ready web platform that elevates the club's professional digital presence."
     }
   },
@@ -554,7 +554,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
 export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   {
     id: "exp-1",
-    year: "2025 — 2026",
+    year: "2025 - 2026",
     title: "Independent Software Engineer & Product Builder",
     role: "Full-Stack Web & Android Developer",
     type: "milestone",
@@ -569,7 +569,7 @@ export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   },
   {
     id: "exp-2",
-    year: "2024 — 2025",
+    year: "2024 - 2025",
     title: "Native Android Engineering Focus",
     role: "Mobile App Developer",
     type: "project",
@@ -584,7 +584,7 @@ export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   },
   {
     id: "exp-3",
-    year: "2023 — 2024",
+    year: "2023 - 2024",
     title: "Web Engineering & Modern Frontend Mastery",
     role: "Frontend Developer",
     type: "learning",
@@ -646,7 +646,7 @@ export const AI_CERTIFICATIONS_DATA: AICertificationItem[] = [
     id: "cert-1",
     title: "Google AI Studio & Gemini API Engineering",
     issuer: "Google Developers & DeepMind",
-    date: "2025 — 2026",
+    date: "2025 - 2026",
     badge: "Verified Specialization",
     description: "Hands-on mastery of Google AI Studio workflows, system instructions, function calling, structured JSON output schemas, and server-side @google/genai SDK implementation.",
     skills: ["Google AI Studio", "@google/genai SDK", "Function Calling", "Structured JSON"]

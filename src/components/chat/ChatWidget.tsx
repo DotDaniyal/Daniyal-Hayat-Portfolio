@@ -416,7 +416,7 @@ export function ChatWidget() {
               ? 'Close Dnyl AI by DANIYAL HAYAT'
               : 'Open Dnyl AI by DANIYAL HAYAT'
           }
-          title="Dnyl AI — Created by DANIYAL HAYAT"
+          title="Dnyl AI: Created by DANIYAL HAYAT"
           aria-expanded={isOpen}
         >
           <span

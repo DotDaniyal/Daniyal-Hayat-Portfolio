@@ -472,7 +472,7 @@ Never say "I am Qwen", "My name is Qwen", or "I was developed by Alibaba".`,
   ) {
     topics.push('experience_education');
     const expText = portfolio.experience
-      .map((e) => `- ${e.period}: ${e.title} (${e.role}) — ${e.description}`)
+      .map((e) => `- ${e.period}: ${e.title} (${e.role}): ${e.description}`)
       .join('\n');
     const eduText = portfolio.education
       .map((ed) => `- ${ed.program} (${ed.institution}, ${ed.timeline}): ${ed.description}`)

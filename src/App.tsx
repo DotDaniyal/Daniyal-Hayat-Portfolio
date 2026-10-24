@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MotionConfig } from 'framer-motion';
+import { MotionConfig } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TechStack } from './components/TechStack';
@@ -18,14 +18,14 @@ import { ScrollProgress } from './components/ScrollProgress';
 import { ScrollToTop } from './components/ScrollToTop';
 import { RevealOnScroll } from './components/RevealOnScroll';
 import { LayeredBackground } from './components/LayeredBackground';
-import { PlexusWaveBackground } from './components/PlexusWaveBackground';
-import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
 import { SmoothScroll } from './components/SmoothScroll';
 import { CommandPalette } from './components/CommandPalette';
 import { ProjectModal } from './components/ProjectModal';
 import { ResumeModal } from './components/ResumeModal';
 import { EasterEggModal } from './components/EasterEggModal';
+import { PrivacyModal } from './components/PrivacyModal';
+import { TermsModal } from './components/TermsModal';
 import { Project } from './types';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -39,6 +39,8 @@ export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isEasterEggOpen, setIsEasterEggOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     try {
@@ -124,19 +126,19 @@ export default function App() {
           <Preloader onComplete={() => setLoadingComplete(true)} />
         )}
 
-        {/* Interactive Custom Cursor with badge modes */}
-        <CustomCursor />
-
-        {/* 6-Layer Cinematic Background System */}
+        {/* Restrained Architectural Background */}
         <LayeredBackground isDarkMode={isDarkMode} />
-
-        {/* Premium Plexus Wave Background Animation Layer */}
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <PlexusWaveBackground isDarkMode={isDarkMode} />
-        </div>
 
         {/* Top Scroll Indicator */}
         <ScrollProgress />
+
+        {/* Accessible Skip-to-Content Link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-cyan-500 focus:text-slate-950 focus:font-bold focus:text-xs focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
 
         {/* Navbar with Sound, Theme, CV, and Command Palette triggers */}
         <Navbar 
@@ -148,7 +150,7 @@ export default function App() {
           onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         />
 
-        <main className="relative z-10">
+        <main id="main-content" className="relative z-10">
           {/* Hero Section */}
           <Hero onOpenResume={() => setIsResumeOpen(true)} isLoaded={loadingComplete} />
 
@@ -207,7 +209,11 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <Footer onOpenResume={() => setIsResumeOpen(true)} />
+        <Footer 
+          onOpenResume={() => setIsResumeOpen(true)} 
+          onOpenPrivacy={() => setIsPrivacyOpen(true)}
+          onOpenTerms={() => setIsTermsOpen(true)}
+        />
 
         {/* Floating Scroll to Top button */}
         <ScrollToTop />
@@ -218,6 +224,8 @@ export default function App() {
           onClose={() => setIsCommandPaletteOpen(false)}
           onOpenResume={() => setIsResumeOpen(true)}
           onOpenEasterEgg={() => setIsEasterEggOpen(true)}
+          onOpenPrivacy={() => setIsPrivacyOpen(true)}
+          onOpenTerms={() => setIsTermsOpen(true)}
           onToggleTheme={toggleTheme}
           isDarkMode={isDarkMode}
         />
@@ -233,6 +241,18 @@ export default function App() {
         <ResumeModal 
           isOpen={isResumeOpen}
           onClose={() => setIsResumeOpen(false)}
+        />
+
+        {/* Dedicated Privacy Policy Modal */}
+        <PrivacyModal
+          isOpen={isPrivacyOpen}
+          onClose={() => setIsPrivacyOpen(false)}
+        />
+
+        {/* Dedicated Terms and Conditions Modal */}
+        <TermsModal
+          isOpen={isTermsOpen}
+          onClose={() => setIsTermsOpen(false)}
         />
 
         {/* Tasteful CLI Easter Egg Terminal */}

@@ -38,7 +38,7 @@ export const ChatWindow = React.memo(
       <motion.section
         role="dialog"
         aria-modal="false"
-        aria-label="Dnyl AI — Created by DANIYAL HAYAT"
+        aria-label="Dnyl AI: Created by DANIYAL HAYAT"
         initial={{ opacity: 0, y: 16, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 16, scale: 0.96 }}
@@ -50,7 +50,7 @@ export const ChatWindow = React.memo(
           <div className="flex items-center gap-2.5 min-w-0">
             <div
               className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 shrink-0"
-              title="Dnyl AI — Created by DANIYAL HAYAT"
+              title="Dnyl AI: Created by DANIYAL HAYAT"
             >
               <Bot className="w-5 h-5" />
               <span

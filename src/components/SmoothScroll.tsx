@@ -14,6 +14,8 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     let lenis: Lenis | null = null;
 
     const startLenis = () => {
+      if (mediaQuery.matches) return;
+
       lenis = new Lenis({
         duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

@@ -32,17 +32,17 @@ export function About({ onOpenResume }: AboutProps) {
 
   const timelineMilestones = [
     {
-      year: "2023 — 2024",
+      year: "2023 - 2024",
       title: "Foundations & Web Architecture",
       desc: "Deep immersion in TypeScript, modern React, DOM rendering optimization, and REST API design patterns."
     },
     {
-      year: "2024 — 2025",
+      year: "2024 - 2025",
       title: "Cross-Platform & Native Android",
       desc: "Expanded into native Android engineering with Kotlin, Jetpack Compose, Room database, and offline-first mobile synchronization."
     },
     {
-      year: "2025 — 2026",
+      year: "2025 - 2026",
       title: "Flagship Deployments & AI Tooling",
       desc: "Architected Darul Ifta web and Android apps, CortexIQ AI workspace, and cloud-deployed production services."
     }
@@ -50,12 +50,6 @@ export function About({ onOpenResume }: AboutProps) {
 
   return (
     <section id="about" className="py-14 sm:py-20 md:py-28 lg:py-32 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-500/[0.015] to-transparent">
-      
-      {/* Editorial Watermark Backdrop */}
-      <div className="absolute top-12 -right-16 pointer-events-none select-none opacity-[0.03] dark:opacity-[0.05] text-7xl sm:text-9xl font-extrabold font-mono tracking-tighter">
-        DANIYAL
-      </div>
-
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Section Heading */}

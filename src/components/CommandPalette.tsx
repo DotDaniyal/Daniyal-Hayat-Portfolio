@@ -32,6 +32,8 @@ interface CommandPaletteProps {
   onToggleTheme: () => void;
   onOpenResume: () => void;
   onOpenEasterEgg: () => void;
+  onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
 }
 
 interface CommandItem {
@@ -50,6 +52,8 @@ export function CommandPalette({
   onToggleTheme,
   onOpenResume,
   onOpenEasterEgg,
+  onOpenPrivacy,
+  onOpenTerms,
 }: CommandPaletteProps) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -218,6 +222,26 @@ export function CommandPalette({
       },
     },
     {
+      id: 'privacy',
+      title: 'View Privacy Policy',
+      category: 'Legal',
+      icon: <FileText className="w-4 h-4 text-cyan-400" />,
+      action: () => {
+        onClose();
+        if (onOpenPrivacy) setTimeout(onOpenPrivacy, 150);
+      },
+    },
+    {
+      id: 'terms',
+      title: 'View Terms and Conditions',
+      category: 'Legal',
+      icon: <FileText className="w-4 h-4 text-cyan-400" />,
+      action: () => {
+        onClose();
+        if (onOpenTerms) setTimeout(onOpenTerms, 150);
+      },
+    },
+    {
       id: 'email',
       title: `Copy Direct Email (${DEVELOPER_EMAIL})`,
       category: 'Actions',
@@ -320,7 +344,7 @@ export function CommandPalette({
             </div>
 
             {/* Results List */}
-            <div className="max-h-[60vh] sm:max-h-[400px] overflow-y-auto p-2 space-y-1">
+            <div data-lenis-prevent className="max-h-[60vh] sm:max-h-[400px] overflow-y-auto p-2 space-y-1">
               {filtered.map((item, idx) => {
                 const isSelected = idx === selectedIndex;
                 return (

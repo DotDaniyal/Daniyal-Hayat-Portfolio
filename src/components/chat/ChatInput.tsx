@@ -64,7 +64,7 @@ export const ChatInput = React.memo(
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask Dnyl AI anything (coding, React, Python, or about Daniyal)..."
-            aria-label="Message Dnyl AI — Created by DANIYAL HAYAT"
+            aria-label="Message Dnyl AI: Created by DANIYAL HAYAT"
             className="flex-1 min-h-[42px] max-h-[108px] px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors resize-none leading-snug"
           />
           <motion.button

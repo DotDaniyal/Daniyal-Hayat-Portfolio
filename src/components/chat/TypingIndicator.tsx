@@ -10,7 +10,7 @@ export const TypingIndicator = React.memo(() => {
       exit={{ opacity: 0 }}
       className="flex items-start gap-2.5"
       aria-label="Dnyl AI is typing"
-      title="Dnyl AI — Created by DANIYAL HAYAT"
+      title="Dnyl AI: Created by DANIYAL HAYAT"
       role="status"
     >
       <div

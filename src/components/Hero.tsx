@@ -54,6 +54,8 @@ interface HeroProps {
 }
 
 function ProfilePhotoCard({ className = "" }: { className?: string }) {
+  const [imgError, setImgError] = React.useState(false);
+
   return (
     <div className={`relative aspect-[4/5] group ${className}`}>
       {/* Subtle ambient glow behind the image */}
@@ -65,13 +67,26 @@ function ProfilePhotoCard({ className = "" }: { className?: string }) {
       <div 
         className="relative w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] overflow-hidden border border-slate-200/90 dark:border-cyan-500/30 shadow-lg dark:shadow-cyan-950/40 transition-all duration-500 ease-out md:group-hover:scale-[1.02] md:group-hover:-translate-y-1 bg-white dark:bg-slate-900 ring-1 ring-black/5 dark:ring-white/10"
       >
-        <img 
-          src="/profile.jpeg" 
-          alt="Daniyal Hayat, Full-Stack Web Developer" 
-          className="w-full h-full object-cover [object-position:50%_0%] transition-transform duration-700 ease-out md:group-hover:scale-[1.02]"
-          loading="lazy"
-          decoding="async"
-        />
+        {!imgError ? (
+          <img 
+            src="/profile.jpeg" 
+            alt="Daniyal Hayat, Full-Stack Developer &amp; Creative Builder" 
+            className="w-full h-full object-cover [object-position:50%_0%] transition-transform duration-700 ease-out md:group-hover:scale-[1.02]"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950 text-center p-6">
+            <div className="w-20 h-20 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-mono text-2xl font-extrabold mb-3">
+              DH
+            </div>
+            <span className="text-sm font-bold text-white tracking-wide">DANIYAL HAYAT</span>
+            <span className="text-xs font-mono text-cyan-400 mt-1">Full-Stack &amp; Android Engineer</span>
+          </div>
+        )}
         
         {/* Subtle bottom gradient to gracefully blend suit edge */}
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950/40 to-transparent pointer-events-none" />

@@ -30,13 +30,23 @@ export function EasterEggModal({ isOpen, onClose }: EasterEggModalProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
       document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [isOpen]);
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -54,18 +64,18 @@ export function EasterEggModal({ isOpen, onClose }: EasterEggModalProps) {
         output = (
           <div className="space-y-1 text-xs text-slate-300">
             <p className="text-cyan-400 font-semibold">Available Commands:</p>
-            <p><span className="text-emerald-400 font-mono">whoami</span> — Display builder identity and mission</p>
-            <p><span className="text-emerald-400 font-mono">skills</span> — List primary technical competencies</p>
-            <p><span className="text-emerald-400 font-mono">projects</span> — List verified production repositories</p>
-            <p><span className="text-emerald-400 font-mono">contact</span> — Reveal direct contact channels</p>
-            <p><span className="text-emerald-400 font-mono">sudo hire</span> — Unlock VIP fast-track message</p>
-            <p><span className="text-emerald-400 font-mono">clear</span> — Reset terminal history</p>
-            <p><span className="text-emerald-400 font-mono">exit</span> — Close developer terminal</p>
+            <p><span className="text-emerald-400 font-mono">whoami</span>: Display builder identity and mission</p>
+            <p><span className="text-emerald-400 font-mono">skills</span>: List primary technical competencies</p>
+            <p><span className="text-emerald-400 font-mono">projects</span>: List verified production repositories</p>
+            <p><span className="text-emerald-400 font-mono">contact</span>: Reveal direct contact channels</p>
+            <p><span className="text-emerald-400 font-mono">sudo hire</span>: Unlock VIP fast-track message</p>
+            <p><span className="text-emerald-400 font-mono">clear</span>: Reset terminal history</p>
+            <p><span className="text-emerald-400 font-mono">exit</span>: Close developer terminal</p>
           </div>
         );
         break;
       case 'whoami':
-        output = `${DEVELOPER_NAME} — Software Engineer & Product Builder specializing in high-performance web platforms (React/TypeScript), native Android (Kotlin), and AI workflows.`;
+        output = `${DEVELOPER_NAME}: Software Engineer & Product Builder specializing in high-performance web platforms (React/TypeScript), native Android (Kotlin), and AI workflows.`;
         break;
       case 'skills':
         output = (
@@ -83,7 +93,7 @@ export function EasterEggModal({ isOpen, onClose }: EasterEggModalProps) {
           <div className="space-y-1 text-xs text-slate-300">
             {PROJECTS.map(p => (
               <p key={p.id}>
-                • <span className="text-cyan-400 font-semibold">{p.displayName}</span> ({p.category}) — {p.technologies.join(', ')}
+                • <span className="text-cyan-400 font-semibold">{p.displayName}</span> ({p.category}): {p.technologies.join(', ')}
               </p>
             ))}
           </div>

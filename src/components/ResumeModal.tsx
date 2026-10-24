@@ -116,16 +116,16 @@ SELECTED PRODUCTION PROJECTS
 ${PROJECTS.slice(0, 6).map(p => `• ${p.displayName} (${p.category})\n  ${p.description}\n  Tech: ${p.technologies.join(', ')}\n  GitHub: ${p.githubUrl}${p.liveUrl ? `\n  Live: ${p.liveUrl}` : ''}`).join('\n\n')}
 
 EXPERIENCE & ENGINEERING MILESTONES
-• Full-Stack Web & Native Android Developer (2025 — Present)
+• Full-Stack Web & Native Android Developer (2025 - Present)
   Independent Software Engineer & Product Builder
-• Mobile Application Developer (2024 — 2025)
+• Mobile Application Developer (2024 - 2025)
   Native Android & Algorithmic Systems Focus
-• Frontend Developer (2023 — 2024)
+• Frontend Developer (2023 - 2024)
   Modern Web Engineering & React Foundations
 
 EDUCATION & CONTINUOUS SPECIALIZATIONS
-• Core Computer Science, Algorithms & Software Architecture — Continuous Academic & Applied Engineering Studies
-• Google AI Studio & Gemini API SDK Specialization — Advanced AI Systems & Applied Verification (Google Developers & DeepMind)
+• Core Computer Science, Algorithms & Software Architecture: Continuous Academic & Applied Engineering Studies
+• Google AI Studio & Gemini API SDK Specialization: Advanced AI Systems & Applied Verification (Google Developers & DeepMind)
 `;
     navigator.clipboard.writeText(text);
     setCopiedText(true);
@@ -163,7 +163,7 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
       ]
     },
     {
-      title: 'Hamara Weather — Real-Time Meteorological Tracking',
+      title: 'Hamara Weather: Real-Time Meteorological Tracking',
       role: 'Frontend Engineer',
       tech: ['JavaScript (ES6+)', 'OpenWeather API', 'HTML5', 'CSS3', 'Vercel'],
       liveUrl: 'https://hamara-weather.vercel.app/',
@@ -174,7 +174,7 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
       ]
     },
     {
-      title: 'Mystic Match — Algorithmic Mobile & Web Puzzle Game',
+      title: 'Mystic Match: Algorithmic Mobile & Web Puzzle Game',
       role: 'Game & Mobile Engineer',
       tech: ['Kotlin', 'Android Canvas', '2D Matrix Algorithms', 'State Machines'],
       liveUrl: 'https://mystic-match-rho.vercel.app/',
@@ -237,7 +237,7 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
                   </div>
                   <div className="hidden sm:block">
                     <h2 id="resume-dialog-title" className="text-xs sm:text-sm font-bold text-white leading-tight truncate">
-                      {DEVELOPER_NAME} — Curriculum Vitae
+                      {DEVELOPER_NAME} | Curriculum Vitae
                     </h2>
                     <span className="text-[10px] font-mono text-cyan-400 block">
                       Executive Portfolio Edition
@@ -349,7 +349,7 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 overflow-y-auto relative bg-[#07090e] p-3 sm:p-6 lg:p-8 flex flex-col items-center print:p-0 print:bg-white print:overflow-visible">
+            <div data-lenis-prevent className="flex-1 overflow-y-auto relative bg-[#07090e] p-3 sm:p-6 lg:p-8 flex flex-col items-center print:p-0 print:bg-white print:overflow-visible">
               
               {/* VIEW 1: Aesthetic Executive Paper Document (Guaranteed 100% Rendering Everywhere) */}
               {viewMode === 'document' && (
@@ -364,7 +364,7 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
                       <div>
                         <div className="flex items-center gap-2 justify-center sm:justify-start">
                           <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
-                            Daniyal Hayat — Executive Resume
+                            Daniyal Hayat | Executive Resume
                           </h3>
                           <span className="hidden xs:inline-flex text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold">
                             Vector PDF
@@ -536,8 +536,8 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
                       <div className="space-y-3 text-xs">
                         <div className="space-y-1">
                           <div className="flex justify-between items-baseline font-semibold text-slate-950">
-                            <span>Full-Stack Web &amp; Native Android Developer — Independent Software Engineer</span>
-                            <span className="font-mono text-slate-500 text-[11px]">2025 — Present</span>
+                            <span>Full-Stack Web &amp; Native Android Developer: Independent Software Engineer</span>
+                            <span className="font-mono text-slate-500 text-[11px]">2025 - Present</span>
                           </div>
                           <p className="text-slate-700 leading-relaxed">
                             Architecting end-to-end production web platforms and native mobile apps with strict emphasis on performance, type safety, accessibility, and modern UI craft.
@@ -546,8 +546,8 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
 
                         <div className="space-y-1">
                           <div className="flex justify-between items-baseline font-semibold text-slate-950">
-                            <span>Mobile Application Developer — Native Android &amp; Algorithmic Systems Focus</span>
-                            <span className="font-mono text-slate-500 text-[11px]">2024 — 2025</span>
+                            <span>Mobile Application Developer: Native Android &amp; Algorithmic Systems Focus</span>
+                            <span className="font-mono text-slate-500 text-[11px]">2024 - 2025</span>
                           </div>
                           <p className="text-slate-700 leading-relaxed">
                             Mastered Kotlin Android architecture, Room database, offline synchronization routines, and touch-optimized canvas engines.
@@ -556,8 +556,8 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
 
                         <div className="space-y-1">
                           <div className="flex justify-between items-baseline font-semibold text-slate-950">
-                            <span>Frontend Developer — Modern Web Engineering &amp; React Foundations</span>
-                            <span className="font-mono text-slate-500 text-[11px]">2023 — 2024</span>
+                            <span>Frontend Developer: Modern Web Engineering &amp; React Foundations</span>
+                            <span className="font-mono text-slate-500 text-[11px]">2023 - 2024</span>
                           </div>
                           <p className="text-slate-700 leading-relaxed">
                             Built responsive web platforms, async RESTful API integrations, and component-driven design systems with strict Git version control.
@@ -577,12 +577,12 @@ EDUCATION & CONTINUOUS SPECIALIZATIONS
                       <div className="space-y-2 text-xs text-slate-700">
                         <div>
                           <strong className="text-slate-950 font-semibold">• Core Computer Science, Algorithms &amp; Software Architecture</strong>
-                          <span className="text-slate-500 font-mono text-[11px]"> — Continuous Academic Studies</span>
+                          <span className="text-slate-500 font-mono text-[11px]"> (Continuous Academic Studies)</span>
                           <p className="text-slate-600 mt-0.5">Data Structures, Algorithm Complexity, OOP in Kotlin/TypeScript, System Design, and Caching.</p>
                         </div>
                         <div>
                           <strong className="text-slate-950 font-semibold">• Google AI Studio &amp; Gemini API SDK Specialization</strong>
-                          <span className="text-slate-500 font-mono text-[11px]"> — Applied Verification (Google Developers &amp; DeepMind)</span>
+                          <span className="text-slate-500 font-mono text-[11px]"> (Applied Verification, Google Developers &amp; DeepMind)</span>
                           <p className="text-slate-600 mt-0.5">System instructions, structured JSON schemas, multimodal prompting, function calling, and server-side SDK proxying.</p>
                         </div>
                       </div>
@@ -692,15 +692,15 @@ SELECTED PRODUCTION PROJECTS & OPEN SOURCE
 ============================================================
 EXPERIENCE & ENGINEERING MILESTONES
 ============================================================
-• Full-Stack Web & Native Android Developer — Independent Software Engineer (2025 — Present)
-• Mobile Application Developer — Native Android & Algorithmic Systems Focus (2024 — 2025)
-• Frontend Developer — Modern Web Engineering & React Foundations (2023 — 2024)
+• Full-Stack Web & Native Android Developer: Independent Software Engineer (2025 - Present)
+• Mobile Application Developer: Native Android & Algorithmic Systems Focus (2024 - 2025)
+• Frontend Developer: Modern Web Engineering & React Foundations (2023 - 2024)
 
 ============================================================
 EDUCATION & CONTINUOUS SPECIALIZATIONS
 ============================================================
-• Core Computer Science, Algorithms & Software Architecture — Applied Engineering Studies
-• Google AI Studio & Gemini API SDK Specialization — Applied Verification (Google Developers & DeepMind)`}
+• Core Computer Science, Algorithms & Software Architecture: Applied Engineering Studies
+• Google AI Studio & Gemini API SDK Specialization: Applied Verification (Google Developers & DeepMind)`}
                   </pre>
                 </div>
               )}

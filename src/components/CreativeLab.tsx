@@ -22,6 +22,18 @@ export function CreativeLab() {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedItem, setSelectedItem] = useState<CreativeLabItem | null>(null);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedItem) {
+        setSelectedItem(null);
+      }
+    };
+    if (selectedItem) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedItem]);
+
   const categories = ['All', 'UI Experiments', 'Visual Concepts', 'Motion & Canvas', 'Brand & Graphics'];
 
   const filteredItems = activeCategory === 'All'

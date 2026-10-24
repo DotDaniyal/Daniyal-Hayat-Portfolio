@@ -149,7 +149,7 @@ export function FeaturedProject({ onOpenCaseStudy }: FeaturedProjectProps) {
                 </div>
 
                 <div className="space-y-2 text-slate-400 overflow-x-auto break-all">
-                  <p className="text-cyan-400 font-semibold">// Initializing CortexIQ AI Prompt Telemetry</p>
+                  <p className="text-cyan-400 font-semibold">CortexIQ Runtime Pipeline: Active</p>
                   <p><span className="text-purple-400">const</span> intelligence = <span className="text-yellow-400">new</span> CortexIQ({`{\n  mode: "reactive",\n  framework: "TypeScript",\n  rateLimitSafety: true\n}`});</p>
                   <p className="text-emerald-400">✓ Token weighting calculated in 4.2ms</p>
                   <p className="text-blue-400">✓ Model pipeline active with 0 layout shift</p>

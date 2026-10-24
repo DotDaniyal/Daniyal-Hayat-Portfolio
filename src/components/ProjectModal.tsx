@@ -113,7 +113,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           </div>
 
           {/* Modal Body */}
-          <div className="flex-1 overflow-y-auto p-5 sm:p-8 space-y-6 sm:space-y-8 text-slate-700 dark:text-slate-300">
+          <div data-lenis-prevent className="flex-1 overflow-y-auto p-5 sm:p-8 space-y-6 sm:space-y-8 text-slate-700 dark:text-slate-300">
             {/* Title & Introduction */}
             <div className="space-y-2 sm:space-y-3">
               <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">

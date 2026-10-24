@@ -20,6 +20,22 @@ export function useGitHubActivity() {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
+        const cached = localStorage.getItem('daniyal_github_activity_cache');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed.activity) {
+            setActivity(parsed.activity);
+          }
+          if (parsed.timestamp && Date.now() - new Date(parsed.timestamp).getTime() < 10 * 60 * 1000) {
+            setLoading(false);
+            return;
+          }
+        }
+      } catch {
+        // Safe fallback for restricted storage
+      }
+
+      try {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=5`);
         if (!response.ok) throw new Error(`Events fetch failed with status ${response.status}`);
         const events = await response.json();
@@ -35,29 +51,47 @@ export function useGitHubActivity() {
           const type = pushEvent.type === 'PushEvent' ? 'Committed to' : 'Updated';
           const time = pushEvent.created_at ? new Date(pushEvent.created_at).toLocaleDateString() : 'Recently active';
 
-          setActivity({
+          const nextActivity = {
             repoName,
             repoUrl,
             actionText: `${type} ${repoName}`,
             timeAgo: time
-          });
+          };
+          setActivity(nextActivity);
+          try {
+            localStorage.setItem('daniyal_github_activity_cache', JSON.stringify({
+              activity: nextActivity,
+              timestamp: new Date().toISOString()
+            }));
+          } catch {
+            // ignore
+          }
         } else {
           // Fallback to most recently updated repo
           const repoRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=1`);
           if (repoRes.ok) {
             const repos = await repoRes.json();
             if (Array.isArray(repos) && repos.length > 0 && repos[0]?.name) {
-              setActivity({
+              const nextActivity = {
                 repoName: repos[0].name,
                 repoUrl: repos[0].html_url || `https://github.com/${GITHUB_USERNAME}/${repos[0].name}`,
                 actionText: `Active on ${repos[0].name}`,
                 timeAgo: 'Recently updated'
-              });
+              };
+              setActivity(nextActivity);
+              try {
+                localStorage.setItem('daniyal_github_activity_cache', JSON.stringify({
+                  activity: nextActivity,
+                  timestamp: new Date().toISOString()
+                }));
+              } catch {
+                // ignore
+              }
             }
           }
         }
       } catch (err) {
-        console.warn('Using default active status:', err);
+        // Silently keep default/cached active status
       } finally {
         setLoading(false);
       }

@@ -6,9 +6,11 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onOpenResume?: () => void;
+  onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
 }
 
-export function Footer({ onOpenResume }: FooterProps) {
+export function Footer({ onOpenResume, onOpenPrivacy, onOpenTerms }: FooterProps) {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   const [timeString, setTimeString] = useState('');
@@ -112,13 +114,13 @@ export function Footer({ onOpenResume }: FooterProps) {
         {/* Bottom Bar: Copyright & Attribution */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-slate-500 pt-6 border-t border-slate-200 dark:border-slate-900/60 text-[11px]">
           <div>
-            <span className="font-semibold text-slate-800 dark:text-slate-300">{DEVELOPER_NAME}</span> — <span className="text-slate-500 dark:text-slate-400">{DEVELOPER_ROLE}</span>
+            <span className="font-semibold text-slate-800 dark:text-slate-300">{DEVELOPER_NAME}</span>: <span className="text-slate-500 dark:text-slate-400">{DEVELOPER_ROLE}</span>
             <div className="text-slate-500 text-[10px] mt-0.5">
               © {currentYear} {DEVELOPER_NAME}. {t.footer.rights}
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5">
             <a
               href={`mailto:${DEVELOPER_EMAIL}`}
               className="min-h-[44px] inline-flex items-center gap-1 hover:text-cyan-400 transition-colors"
@@ -130,13 +132,12 @@ export function Footer({ onOpenResume }: FooterProps) {
               href={GITHUB_PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="external"
               className="min-h-[44px] inline-flex items-center gap-1 hover:text-cyan-400 transition-colors"
             >
               <Github className="w-3.5 h-3.5" />
               <span>GitHub</span>
             </a>
-            {onOpenResume ? (
+            {onOpenResume && (
               <button
                 type="button"
                 onClick={onOpenResume}
@@ -146,23 +147,27 @@ export function Footer({ onOpenResume }: FooterProps) {
                 <FileText className="w-3.5 h-3.5 text-cyan-500" />
                 <span>Resume / CV</span>
               </button>
-            ) : (
-              <a
-                href={RESUME_PDF_PATH}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Daniyal Hayat Resume PDF"
-                className="min-h-[44px] inline-flex items-center gap-1 hover:text-cyan-400 transition-colors"
+            )}
+            {onOpenPrivacy && (
+              <button
+                type="button"
+                onClick={onOpenPrivacy}
+                className="min-h-[44px] inline-flex items-center hover:text-cyan-400 transition-colors cursor-pointer"
               >
-                <FileText className="w-3.5 h-3.5 text-cyan-500" />
-                <span>Resume PDF</span>
-              </a>
+                Privacy Policy
+              </button>
+            )}
+            {onOpenTerms && (
+              <button
+                type="button"
+                onClick={onOpenTerms}
+                className="min-h-[44px] inline-flex items-center hover:text-cyan-400 transition-colors cursor-pointer"
+              >
+                Terms &amp; Conditions
+              </button>
             )}
             <a href="#projects" className="min-h-[44px] inline-flex items-center hover:text-cyan-400 transition-colors">
               Projects
-            </a>
-            <a href="#creative-lab" className="min-h-[44px] inline-flex items-center hover:text-cyan-400 transition-colors">
-              Creative Lab
             </a>
             <a href="#contact" className="min-h-[44px] inline-flex items-center hover:text-cyan-400 transition-colors">
               Contact

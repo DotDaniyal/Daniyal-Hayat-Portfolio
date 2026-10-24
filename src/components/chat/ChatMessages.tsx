@@ -65,6 +65,7 @@ export const ChatMessages = React.memo(
         role="log"
         aria-live="polite"
         aria-relevant="additions"
+        data-lenis-prevent
         className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3.5 bg-slate-50/50 dark:bg-[#090b14]/60"
       >
         {messages.map((msg) => (

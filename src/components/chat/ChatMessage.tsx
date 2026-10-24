@@ -263,7 +263,7 @@ export const ChatMessage = React.memo(({ msg, onRetry, isBusy }: ChatMessageProp
     >
       <div
         aria-hidden="true"
-        title={isUser ? 'You' : 'Dnyl AI — Created by DANIYAL HAYAT'}
+        title={isUser ? 'You' : 'Dnyl AI: Created by DANIYAL HAYAT'}
         className={`flex items-center justify-center w-7 h-7 rounded-xl shrink-0 mt-0.5 ${
           isUser
             ? 'bg-cyan-500 text-slate-950 shadow-xs'

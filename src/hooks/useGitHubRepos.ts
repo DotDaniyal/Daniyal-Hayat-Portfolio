@@ -104,17 +104,21 @@ export function useGitHubRepos() {
 
   useEffect(() => {
     // Check localStorage cache first
-    const cached = localStorage.getItem('daniyal_github_repos_cache');
-    if (cached) {
-      try {
+    try {
+      const cached = localStorage.getItem('daniyal_github_repos_cache');
+      if (cached) {
         const parsed = JSON.parse(cached);
         if (parsed.projects) {
           setProjects(parsed.projects);
           setLastSynced(new Date(parsed.timestamp).toLocaleTimeString());
         }
-      } catch (e) {
-        // ignore
+        // Skip immediate background refetch if cache is fresh (< 10 minutes)
+        if (parsed.timestamp && Date.now() - new Date(parsed.timestamp).getTime() < 10 * 60 * 1000) {
+          return;
+        }
       }
+    } catch (e) {
+      // Safe fallback for restricted/incognito storage
     }
     // Fetch fresh live data in background
     fetchGitHubData();
